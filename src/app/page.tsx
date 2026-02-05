@@ -1,65 +1,83 @@
-import Image from "next/image";
+import { BentoGrid, BentoGridItem } from "@/components/BentoGrid";
+import CountdownCard from "@/components/CountdownCard";
+import MagneticButton from "@/components/MagneticButton";
+import PulseDot from "@/components/PulseDot";
+import UpsellCard from "@/components/UpsellCard";
 
 export default function Home() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
+    <main className="min-h-screen bg-deep-void text-foreground p-4 md:p-8 flex flex-col items-center">
+      {/* Header / Social Proof */}
+      <div className="w-full max-w-7xl mx-auto flex justify-between items-center mb-12 mt-4">
+        <h1 className="text-2xl font-clash font-bold tracking-tight">
+          PAGE<span className="text-neon-lime">NOW</span>
+        </h1>
+        <PulseDot />
+      </div>
+
+      {/* Hero Section (Optional, implied by Bento) */}
+      <div className="max-w-7xl w-full mx-auto mb-12">
+        <h2 className="text-4xl md:text-6xl font-clash font-bold leading-tight mb-4">
+          Learn Local, <br />
+          <span className="text-neon-lime">Go Global.</span>
+        </h2>
+        <p className="text-neutral-400 max-w-lg font-satoshi text-lg mb-8">
+          The only platform merging Kerala State Syllabus with world-class tech skills.
+        </p>
+        <MagneticButton className="inline-block">
+          <button className="px-8 py-3 bg-neon-lime text-black font-clash font-bold rounded-full transition-transform active:scale-95 flex items-center gap-2">
+            Start Learning
+            {/* Simple arrow icon if lucide not available */}
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              className="w-4 h-4 ml-1"
+            >
+              <path d="M5 12h14" />
+              <path d="m12 5 7 7-7 7" />
+            </svg>
+          </button>
+        </MagneticButton>
+      </div>
+
+      {/* Bento Grid layout */}
+      <BentoGrid className="max-w-7xl mx-auto">
+        {/* Zone 1: The Anchor (SSLC/Plus Two) */}
+        <div className="md:col-span-2 row-span-1">
+          <CountdownCard />
+        </div>
+
+        {/* Zone 2: The Upsell (Python) */}
+        <div className="md:col-span-1 row-span-2 hidden md:block">
+          <UpsellCard />
+        </div>
+
+        {/* Mobile View for Zone 2 to ensure it appears */}
+        <div className="md:hidden row-span-1">
+          <UpsellCard />
+        </div>
+
+        {/* Zone 3 Placeholder / Features */}
+        <BentoGridItem
+          title="Live Doubt Clearing"
+          description="Instant help from top tutors."
+          header={<div className="flex flex-1 w-full h-full min-h-[6rem] rounded-xl bg-neutral-900 border border-white/5" />}
+          className="md:col-span-1"
         />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
+        <BentoGridItem
+          title="Gamified Learning"
+          description="Earn XP and badges as you learn."
+          header={<div className="flex flex-1 w-full h-full min-h-[6rem] rounded-xl bg-neutral-900 border border-white/5" />}
+          className="md:col-span-1"
+        />
+      </BentoGrid>
+    </main>
   );
 }
